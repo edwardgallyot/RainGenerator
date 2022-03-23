@@ -12,6 +12,7 @@
 #include "Envelope.h"
 #include "CosTable.h"
 #include "ParabolicRainGrain.h"
+#include "BubbleGrain.h"
 #include "id_name_vts.h"
 
 class Granulator
@@ -24,12 +25,21 @@ public:
 private:
     Phasor phasor {10000};
     Noise noise {10000};
-    Envelopes parabolic = Envelopes::Parabolic;
-    Envelope envelope {10000, &parabolic};
     CosTable cosTable {10000};
 
-    ParabolicRainGrain parabolicRainGrain {cosTable, envelope, phasor};
+    Envelopes parabolic = Envelopes::Parabolic;
+    Envelopes guassian = Envelopes::Guassian;
+    Envelopes exponential = Envelopes::Exponential;
+
+    Envelope parabolicEnvelope {10000, &parabolic};
+    Envelope exponentialEnvelope {10000, &exponential};
+    Envelope guassianEnvelope {10000, &guassian};
+
+
+    ParabolicRainGrain parabolicRainGrain {cosTable, parabolicEnvelope, phasor};
     std::vector<ParabolicRainGrain> parabolicGrains {100, parabolicRainGrain};
+
+    BubbleGrain bubbleGrain{cosTable, guassianEnvelope, phasor, exponentialEnvelope, cosTable};
 
     juce::LinearSmoothedValue<float> m_smoothedParameters[VTS_PARAMS_N] {{0.0f},
                                                                {0.0f},

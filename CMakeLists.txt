@@ -98,7 +98,9 @@ target_sources(${projectName}
         Envelope.h
         CosTable.h
         ParabolicRainGrain.cpp
-        ParabolicRainGrain.h)
+        ParabolicRainGrain.h
+        BubbleGrain.cpp
+        BubbleGrain.h)
 
 # `target_compile_definitions` adds some preprocessor definitions to our target. In a Projucer
 # project, these might be passed in the 'Preprocessor Definitions' field. JUCE modules also make use

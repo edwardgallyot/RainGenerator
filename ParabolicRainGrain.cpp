@@ -9,8 +9,8 @@ ParabolicRainGrain::ParabolicRainGrain (Grain& grain, Envelope& envelope, Phasor
 }
 void ParabolicRainGrain::getNextSample (float output[])
 {
-    auto phase = phasor.get_sample (phasor_index) * amp;
-    auto out = envelope.get_sample (phase * envelope.getSize());
+    auto phase = phasor.get_sample (phasor_index);
+    auto out = envelope.get_sample (phase * envelope.getSize()) * amp;
 
     phasor_index += phasor_delta * speed;
 

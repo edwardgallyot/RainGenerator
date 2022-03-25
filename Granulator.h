@@ -40,6 +40,7 @@ private:
     std::vector<ParabolicRainGrain> parabolicGrains {100, parabolicRainGrain};
 
     BubbleGrain bubbleGrain{cosTable, guassianEnvelope, phasor, exponentialEnvelope, cosTable};
+    std::vector<BubbleGrain> bubbleGrains{100, bubbleGrain};
 
     juce::LinearSmoothedValue<float> m_smoothedParameters[VTS_PARAMS_N] {{0.0f},
                                                                {0.0f},

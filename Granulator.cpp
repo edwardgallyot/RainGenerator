@@ -35,8 +35,7 @@ void Granulator::process (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& mi
         amp *= m_smoothedParameters[RainParameters::Drop_Volume].getNextValue();
         auto speed = 1.0f + (m_smoothedParameters[RainParameters::Drop_Pitch].getNextValue () * 10.0f) / 4.0f;
         auto spread = m_smoothedParameters[RainParameters::Spread].getNextValue();
-
-        float pan = static_cast<float>(rand() % 100) - 50;
+        float pan = static_cast<float>(rand() % 100) - 50.0f;
         pan = 0.5 + (spread * static_cast<float>(pan / 100.0f));
 
         if (randint > density)
@@ -45,11 +44,13 @@ void Granulator::process (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& mi
             {
                 if (!grain.isActive ())
                 {
-                    parabolicRainGrain.activateGrain (duration, speed, amp, pan, noise, envelope);
+                    parabolicRainGrain.activateGrain (duration, speed, amp, pan, noise, parabolicEnvelope);
                     break;
                 }
             }
         }
+
+        // Set the bubble grain Parameters
 
         float output[2] {0.0f, 0.0f};
 

@@ -14,7 +14,7 @@ class GrainGenerator
 {
 public:
     GrainGenerator (Grain& grain, Envelope& envelope, Phasor& phasor);
-    void activateGrain (float duration, float speed, float amp, float pan, Grain& grain, Envelope& envelope);
+    virtual void activateGrain (float duration, float speed, float amp, float pan, Grain& grain, Envelope& envelope);
     virtual void getNextSample (float output[]) = 0;
     [[nodiscard]] bool isActive () const
     { return active; };

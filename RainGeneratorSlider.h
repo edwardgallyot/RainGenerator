@@ -18,6 +18,7 @@ class RainGeneratorSlider : public juce::Component,
 public:
     RainGeneratorSlider (juce::AudioProcessorValueTreeState& treeState, std::string ID, std::string Name);
     void resized () override;
+    void setSkewForTone();
 protected:
     juce::AudioProcessorValueTreeState& parameters;
     std::string ID;

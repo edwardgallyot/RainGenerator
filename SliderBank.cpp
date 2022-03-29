@@ -35,3 +35,8 @@ void SliderBank::resized ()
     slider1.setBounds (area1);
     slider2.setBounds (area2);
 }
+void SliderBank::setTopSliderTone ()
+{
+    slider1.setSkewForTone();
+}
+

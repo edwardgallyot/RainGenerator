@@ -9,6 +9,7 @@
 #include "CosTable.h"
 #include "ParabolicRainGrain.h"
 #include "Granulator.h"
+#include "GainModule.h"
 
 //==============================================================================
 class RainGeneratorProcessor : public BaseProcessor
@@ -24,6 +25,9 @@ public:
 
     void processBlock (juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
     using AudioProcessor::processBlock;
+
+    void getStateInformation (juce::MemoryBlock& destData) override;
+    void setStateInformation (const void* data, int sizeInBytes) override;
 
     //==============================================================================
     juce::AudioProcessorEditor* createEditor () override;
@@ -59,6 +63,7 @@ private:
 
     juce::AudioProcessorValueTreeState parameters;
     Granulator granulator{};
+    GainModule gainModule;
     // Vectors for Ids Go Here
     juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout ();
     //==============================================================================

@@ -16,6 +16,7 @@ public:
     SliderBank (RainGeneratorProcessor& p, juce::AudioProcessorValueTreeState& vts,
                 std::vector<std::string> idName1, std::vector<std::string> idName2);
     void resized() override;
+    void setTopSliderTone();
 private:
     RainGeneratorProcessor& processor;
     juce::AudioProcessorValueTreeState& parameters;

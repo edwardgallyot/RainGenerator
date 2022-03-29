@@ -10,9 +10,9 @@
 
 #define VTS_ID_NOISE_TONE "noise_tone"
 #define VTS_NAME_NOISE_TONE "Tone"
-#define VTS_MIN_NOISE_TONE 0.0f
-#define VTS_MAX_NOISE_TONE 1.0f
-#define VTS_DEFAULT_NOISE_TONE 1.0f
+#define VTS_MIN_NOISE_TONE 0.00001f
+#define VTS_MAX_NOISE_TONE 20000.0f
+#define VTS_DEFAULT_NOISE_TONE 20000.0f
 
 #define VTS_ID_NOISE_VOL "noise_vol"
 #define VTS_NAME_NOISE_VOL "Volume"
@@ -34,9 +34,9 @@
 
 #define VTS_ID_BUBBLE_TONE "bubble_tone"
 #define VTS_NAME_BUBBLE_TONE "Tone"
-#define VTS_MIN_BUBBLE_TONE 0.0f
-#define VTS_MAX_BUBBLE_TONE 1.0f
-#define VTS_DEFAULT_BUBBLE_TONE 1.0f
+#define VTS_MIN_BUBBLE_TONE 0.00001f
+#define VTS_MAX_BUBBLE_TONE 20000.0f
+#define VTS_DEFAULT_BUBBLE_TONE 0.00001f
 
 #define VTS_ID_BUBBLE_VOLUME "bubble_vol"
 #define VTS_NAME_BUBBLE_VOLUME "Volume"
@@ -58,9 +58,9 @@
 
 #define VTS_ID_DROP_TONE "drop_tone"
 #define VTS_NAME_DROP_TONE "Tone"
-#define VTS_MIN_DROP_TONE 0.0f
-#define VTS_MAX_DROP_TONE 1.0f
-#define VTS_DEFAULT_DROP_TONE 1.0f
+#define VTS_MIN_DROP_TONE 0.00001f
+#define VTS_MAX_DROP_TONE 20000.0f
+#define VTS_DEFAULT_DROP_TONE 0.00001f
 
 #define VTS_ID_DROP_VOLUME "drop_volume"
 #define VTS_NAME_DROP_VOLUME "Volume"

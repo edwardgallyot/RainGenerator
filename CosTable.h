@@ -27,7 +27,7 @@ public:
     float get_sample (float index) override
     {
         index = static_cast<float>(fmod (index, static_cast<double>(max_index)));
-        return interpolate<float> (index, *data);
+        return interpolate_mod<float> (index, *data);
     }
 
     size_t getMaxIndex () const

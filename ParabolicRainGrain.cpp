@@ -14,11 +14,14 @@ void ParabolicRainGrain::getNextSample (float output[])
 
     phasor_index += phasor_delta * speed;
 
+
     if (phasor_index >= static_cast<float>(phasor.getSize ()))
     {
         phasor_index = 0.0f;
         active = false;
+        out = 0.0f;
     }
+
     output[0] += (1.0f - pan) * out;
     output[1] += pan * out;
 }

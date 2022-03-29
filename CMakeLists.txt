@@ -25,9 +25,9 @@ add_compile_definitions(DONT_SET_USING_JUCE_NAMESPACE)
 # included JUCE directly in your source tree (perhaps as a submodule), you'll need to tell CMake to
 # include that subdirectory as part of the build.
 
-add_subdirectory(/home/edgallyot/JUCE bin)
+#add_subdirectory(/home/edgallyot/JUCE bin)
 
-#find_package(JUCE CONFIG REQUIRED)        # If you've installed JUCE to your system
+find_package(JUCE CONFIG REQUIRED)        # If you've installed JUCE to your system
 # or
 #MAC
 #add_subdirectory(/Users/edwardgallyot/JUCE bin)
@@ -100,7 +100,13 @@ target_sources(${projectName}
         ParabolicRainGrain.cpp
         ParabolicRainGrain.h
         BubbleGrain.cpp
-        BubbleGrain.h)
+        BubbleGrain.h
+        LowPassModule.cpp
+        LowPassModule.h
+        HighPassModule.cpp
+        HighPassModule.h
+        GainModule.cpp
+        GainModule.h)
 
 # `target_compile_definitions` adds some preprocessor definitions to our target. In a Projucer
 # project, these might be passed in the 'Preprocessor Definitions' field. JUCE modules also make use
@@ -135,6 +141,7 @@ target_link_libraries(${projectName}
     PRIVATE
         # AudioPluginData           # If we'd created a binary data target, we'd link to it here
         juce::juce_audio_utils
+        juce::juce_dsp
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags

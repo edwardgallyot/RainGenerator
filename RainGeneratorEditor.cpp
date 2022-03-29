@@ -22,6 +22,9 @@ RainGeneratorEditor::RainGeneratorEditor (RainGeneratorProcessor& p, juce::Audio
     addAndMakeVisible (sliderBank4);
     addAndMakeVisible (sliderBank5);
     addAndMakeVisible (sliderBank6);
+    sliderBank1.setTopSliderTone();
+    sliderBank3.setTopSliderTone();
+    sliderBank5.setTopSliderTone();
 // Make sure that before the constructor has finished, you've set the
 // editor's size to whatever you need it to be.
     setSize (700, 400);
@@ -41,6 +44,9 @@ void RainGeneratorEditor::paint (juce::Graphics& g)
 
 void RainGeneratorEditor::resized ()
 {
+    sliderBank1.setTopSliderTone();
+    sliderBank3.setTopSliderTone();
+    sliderBank5.setTopSliderTone();
 
     std::vector<juce::Rectangle<int>> areas {6, getLocalBounds ()};
 

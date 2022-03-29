@@ -35,6 +35,7 @@ void RainGeneratorProcessor::prepareToPlay (double sampleRate, int samplesPerBlo
     // initialisation that you need..
     juce::ignoreUnused (sampleRate, samplesPerBlock);
     granulator.prepare (sampleRate, samplesPerBlock);
+    gainModule.prepare(sampleRate, samplesPerBlock);
 }
 
 void RainGeneratorProcessor::releaseResources ()
@@ -70,8 +71,10 @@ void RainGeneratorProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples ());
 
-    granulator.process (buffer, midiMessages);
+    granulator.process (buffer, midiMessages, m_parameters);
 
+    auto gain = m_parameters[RainParameters::Volume]->load();
+    gainModule.process(buffer, midiMessages, gain);
 
 }
 
@@ -101,6 +104,21 @@ juce::AudioProcessorValueTreeState::ParameterLayout RainGeneratorProcessor::crea
                                                                  m_defaults[i]));
     }
     return params;
+}
+
+void RainGeneratorProcessor::getStateInformation (juce::MemoryBlock& destData)
+{
+    auto state = parameters.copyState ();
+    std::unique_ptr<juce::XmlElement> xml (state.createXml ());
+    copyXmlToBinary (*xml, destData);
+}
+void RainGeneratorProcessor::setStateInformation (const void* data, int sizeInBytes)
+{
+    std::unique_ptr<juce::XmlElement> xmlState (getXmlFromBinary (data, sizeInBytes));
+
+    if (xmlState.get () != nullptr)
+        if (xmlState->hasTagName (parameters.state.getType ()))
+            parameters.replaceState (juce::ValueTree::fromXml (*xmlState));
 }
 
 

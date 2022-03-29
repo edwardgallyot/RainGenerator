@@ -11,15 +11,15 @@
 class BubbleGrain : public GrainGenerator
 {
 public:
-    BubbleGrain (Grain& grain,
-                 Envelope& envelope,
-                 Phasor& phasor,
-                 Envelope& pitchEnvelope,
-                 CosTable& cosTable);
+    BubbleGrain (Grain& grain, Envelope& envelope, Phasor& phasor, Envelope& pitchEnvelope);
     void getNextSample (float output[]) override;
-    CosTable& cosTable;
+    void activateGrain (float duration, float speed, float amp, float pan, Grain& grain, Envelope& envelope) override;
     Envelope& pitchEnvelope;
-
+    Grain& grain;
+    float offset{0.0f};
+    float ampDelta{0.0f};
+    float ampTrigger{0.0f};
+    float ampIndex{0.0f};
 };
 
 

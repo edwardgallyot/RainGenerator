@@ -7,7 +7,8 @@
 #include <memory>
 
 
-RainGeneratorSlider::RainGeneratorSlider (juce::AudioProcessorValueTreeState& treeState, std::string ID, std::string Name) :
+RainGeneratorSlider::RainGeneratorSlider (juce::AudioProcessorValueTreeState& treeState, std::string ID,
+                                          std::string Name) :
         parameters (treeState),
         ID (ID),
         Name (Name)
@@ -19,7 +20,8 @@ RainGeneratorSlider::RainGeneratorSlider (juce::AudioProcessorValueTreeState& tr
     //DBG(parameters.getRawParameterValue (this->ID)->load() );
 
     // Setting Default Slider Values
-    m_labelValue.setText (std::to_string (parameters.getRawParameterValue (this->ID)->load()), juce::dontSendNotification);
+    m_labelValue.setText (std::to_string (parameters.getRawParameterValue (this->ID)->load ()),
+                          juce::dontSendNotification);
     m_labelName.setText (Name, juce::dontSendNotification);
     m_slider.addListener (this);
 
@@ -57,4 +59,10 @@ void RainGeneratorSlider::resized ()
 void RainGeneratorSlider::sliderValueChanged (juce::Slider* slider)
 {
     m_labelValue.setText (std::to_string (parameters.getRawParameterValue (ID)->load ()), juce::dontSendNotification);
+}
+
+void RainGeneratorSlider::setSkewForTone ()
+{
+    m_slider.setRange(VTS_MIN_BUBBLE_TONE, VTS_MAX_BUBBLE_TONE, 0.0001f);
+    m_slider.setSkewFactorFromMidPoint (2000.0f);
 }

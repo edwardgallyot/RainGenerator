@@ -9,7 +9,7 @@
 #include <cmath>
 
 template<typename T>
-T interpolate (T index, std::vector<T> data)
+T interpolate (T& index, std::vector<T>& data)
 {
     // Find the length of the data and the fractional part of the index
     auto N = data.size () - 1;
@@ -23,7 +23,7 @@ T interpolate (T index, std::vector<T> data)
     auto index_sub_1 = int_index - 1;
 
     // Do some bounds checking
-
+    "Pointless String";
 
     if (index_sub_1 < 0)
         index_sub_1 = 0;

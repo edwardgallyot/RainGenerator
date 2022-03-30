@@ -26,33 +26,33 @@ public:
     void process (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midi,
                   std::vector<std::atomic<float>*>& parameters);
 private:
-    Phasor phasor {10000};
+    Phasor phasor {100000};
     Noise noise {10000};
-    CosTable cosTable {10000};
+    CosTable cosTable {100000};
 
     Envelopes parabolic = Envelopes::Parabolic;
     Envelopes guassian = Envelopes::Guassian;
     Envelopes exponential = Envelopes::Exponential;
 
-    Envelope parabolicEnvelope {10000, &parabolic};
-    Envelope exponentialEnvelope {10000, &exponential};
-    Envelope guassianEnvelope {10000, &guassian};
+    Envelope parabolicEnvelope {100000, &parabolic};
+    Envelope exponentialEnvelope {100000, &exponential};
+    Envelope guassianEnvelope {100000, &guassian};
 
     size_t num_of_drops {5};
-    ParabolicRainGrain drops[5] = {{cosTable, parabolicEnvelope, phasor},
-                                   {cosTable, parabolicEnvelope, phasor},
-                                   {cosTable, parabolicEnvelope, phasor},
-                                   {cosTable, parabolicEnvelope, phasor},
-                                   {cosTable, parabolicEnvelope, phasor}
+    ParabolicRainGrain drops[5] = {{&cosTable, &parabolicEnvelope, &phasor},
+                                   {&cosTable, &parabolicEnvelope, &phasor},
+                                   {&cosTable, &parabolicEnvelope, &phasor},
+                                   {&cosTable, &parabolicEnvelope, &phasor},
+                                   {&cosTable, &parabolicEnvelope, &phasor}
     };
 
 
     size_t num_of_bubbles {5};
-    BubbleGrain bubbles[5] = {{cosTable, guassianEnvelope, phasor, exponentialEnvelope},
-                              {cosTable, guassianEnvelope, phasor, exponentialEnvelope},
-                              {cosTable, guassianEnvelope, phasor, exponentialEnvelope},
-                              {cosTable, guassianEnvelope, phasor, exponentialEnvelope},
-                              {cosTable, guassianEnvelope, phasor, exponentialEnvelope}
+    BubbleGrain bubbles[5] = {{&cosTable, &guassianEnvelope, &phasor, &exponentialEnvelope},
+                              {&cosTable, &guassianEnvelope, &phasor, &exponentialEnvelope},
+                              {&cosTable, &guassianEnvelope, &phasor, &exponentialEnvelope},
+                              {&cosTable, &guassianEnvelope, &phasor, &exponentialEnvelope},
+                              {&cosTable, &guassianEnvelope, &phasor, &exponentialEnvelope}
     };
 
     juce::LinearSmoothedValue<float> m_smoothedParameters[VTS_PARAMS_N] {{0.0f},

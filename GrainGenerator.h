@@ -13,8 +13,8 @@
 class GrainGenerator
 {
 public:
-    GrainGenerator (Grain& grain, Envelope& envelope, Phasor& phasor);
-    virtual void activateGrain (float duration, float speed, float amp, float pan, Grain& grain, Envelope& envelope);
+    GrainGenerator (Grain* grain, Envelope* envelope, Phasor* phasor);
+    virtual void activateGrain (float duration, float speed, float amp, float pan, Grain* grain, Envelope* envelope);
     virtual void getNextSample (float output[]) = 0;
     [[nodiscard]] bool isActive () const
     { return active; };
@@ -24,11 +24,11 @@ protected:
     float duration {0.0f};
     float speed {0.0f};
     float amp {0.0f};
-    Phasor& phasor;
-    Envelope& envelope;
+    Phasor* phasor;
+    Envelope* envelope;
     float phasor_index {0.0f};
     float phasor_delta {0.0f};
-    Grain& grain;
+    Grain* grain;
 };
 
 

@@ -10,7 +10,7 @@
 class ParabolicRainGrain : public GrainGenerator
 {
 public:
-    ParabolicRainGrain (Grain& grain, Envelope& envelope, Phasor& phasor);
+    ParabolicRainGrain (Grain* grain, Envelope* envelope, Phasor* phasor);
     void getNextSample (float output[]) override;
 };
 

@@ -52,7 +52,7 @@ void Granulator::process (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& mi
                 auto* grain = &(drops[i]);
                 if (!grain->isActive ())
                 {
-                    grain->activateGrain (duration, speed, amp, pan, cosTable, parabolicEnvelope);
+                    grain->activateGrain (duration, speed, amp, pan, &cosTable, &parabolicEnvelope);
                     break;
                 }
             }
@@ -68,7 +68,7 @@ void Granulator::process (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& mi
                 auto* grain = &(bubbles[i]);
                 if (!grain->isActive ())
                 {
-                    grain->activateGrain (duration, speed, amp, pan, cosTable, guassianEnvelope);
+                    grain->activateGrain (duration, speed, amp, pan, &cosTable, &guassianEnvelope);
                     break;
                 }
             }

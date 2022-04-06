@@ -73,7 +73,8 @@ private:
     juce::Random random;
 
     LowPassModule lowPassModule;
-    HighPassModule highPassModule;
+    HighPassModule bubbleHighPassModule;
+    HighPassModule dropHighPassModule;
 
 };
 

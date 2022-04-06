@@ -15,7 +15,8 @@ void Granulator::prepare (double sampleRate, double samplesPerBlock)
         m_smoothedParameters[i].reset (sampleRate, 0.05f);
     }
     Fs = sampleRate;
-    highPassModule.prepare (sampleRate, samplesPerBlock, 2);
+    bubbleHighPassModule.prepare (sampleRate, samplesPerBlock, 2);
+    dropHighPassModule.prepare(sampleRate, samplesPerBlock, 2);
     lowPassModule.prepare (sampleRate, samplesPerBlock, 2);
 }
 
@@ -139,8 +140,8 @@ void Granulator::process (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& mi
     auto dropTone = parameters[RainParameters::Drop_Tone]->load ();
     auto noiseTone = parameters[RainParameters::Noise_Tone]->load ();
 
-    highPassModule.process (bubbleBuffer, midi, bubbleTone);
-    highPassModule.process (dropBuffer, midi, dropTone);
+    bubbleHighPassModule.process (bubbleBuffer, midi, bubbleTone);
+    dropHighPassModule.process (dropBuffer, midi, dropTone);
     lowPassModule.process (noiseBuffer, midi, noiseTone);
 
     // Summing the buffers

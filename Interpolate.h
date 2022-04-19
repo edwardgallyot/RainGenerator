@@ -60,7 +60,7 @@ T interpolate (T& index, std::vector<T>& data)
 }
 
 template<typename T>
-T interpolate_mod (T index, std::vector<T> data)
+T interpolate_mod (T index, std::vector<T>& data)
 {
     // Find the length of the data and the fractional part of the index
     auto N = data.size () - 1;
